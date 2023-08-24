@@ -1,0 +1,11 @@
+BEGIN
+    FOR r IN (
+        SELECT owner, table_name 
+        FROM all_tables 
+        WHERE owner = 'SCHEMA_NAME'
+    )
+    LOOP
+        EXECUTE IMMEDIATE 
+            'GRANT SELECT ON '||r.owner||'.'||r.table_name||' to ' || 'USER_NAME' ;
+    END LOOP;
+END;

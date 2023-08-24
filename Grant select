@@ -1,7 +1,7 @@
 BEGIN
     FOR r IN (
         SELECT owner, table_name 
-        FROM all_tables 
+        FROM all_all_tables 
         WHERE owner = 'SCHEMA_NAME'
     )
     LOOP

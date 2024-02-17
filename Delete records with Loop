@@ -1,7 +1,7 @@
 DECLARE
     -- Define variables for start date, end date, and current date
-    v_start_date DATE := TO_DATE('2024-02-01', 'YYYY-MM-DD');
-    v_end_date DATE := TO_DATE('2024-02-31', 'YYYY-MM-DD');
+    v_start_date DATE := TO_DATE('2024-01-01', 'YYYY-MM-DD');
+    v_end_date DATE := TO_DATE('2024-01-31', 'YYYY-MM-DD');
     v_current_date DATE := v_start_date;
     v_deleted_count NUMBER;
 BEGIN
@@ -9,7 +9,7 @@ BEGIN
     WHILE v_current_date <= v_end_date LOOP
         -- Delete records matching the current date criteria
         DELETE FROM table
-        WHERE date_column = column_name;
+        WHERE bank_date = v_current_date;
 
         -- Get the count of deleted records
         v_deleted_count := SQL%ROWCOUNT;

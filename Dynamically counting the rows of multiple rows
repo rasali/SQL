@@ -1,0 +1,18 @@
+DECLARE
+    v_row_count NUMBER;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Table Name | Row Count');
+    DBMS_OUTPUT.PUT_LINE('-------------------------');
+    
+    -- Loop through each specified table and get the row counts
+    FOR r IN (
+        SELECT owner, table_name 
+        FROM all_tables 
+        WHERE owner = 'SCHEMA_NAME' 
+        AND table_name IN ('TABLE_NAME_1', 'TABLE_NAME_2', 'TABLE_NAME_N')
+    ) LOOP
+        EXECUTE IMMEDIATE 'SELECT COUNT(*) FROM '||r.owner||'.'||r.table_name INTO v_row_count;
+        DBMS_OUTPUT.PUT_LINE(r.table_name || ' | ' || v_row_count);
+    END LOOP;
+END;
+/
